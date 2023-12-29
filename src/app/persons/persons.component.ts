@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiService} from "../api/api.service";
+import {Persons} from "./Persons";
+import {PersonsService} from "./persons.service";
 
 @Component({
   selector: 'app-persons',
@@ -7,12 +8,12 @@ import {ApiService} from "../api/api.service";
   styleUrls: ['./persons.component.css']  // Usa 'styleUrls' en lugar de 'styleUrl'
 })
 export class PersonsComponent implements OnInit {
-  Persons: any;
+  Persons: Persons[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private personsService: PersonsService) {}
 
   ngOnInit() {
-    this.apiService.getPersons().subscribe((persons) => {
+    this.personsService.getPersons().subscribe((persons) => {
       this.Persons = persons;
     });
   }
